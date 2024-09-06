@@ -5,13 +5,15 @@ from llama_index.core import StorageContext
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core.node_parser import SimpleNodeParser
-from llama_index.retrievers import QueryFusionRetriever
-from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.retrievers import QueryFusionRetriever
+
 import chromadb
 import os
+import pickle
 
 # 1. OpenAI API 키 설정
-os.environ["OPENAI_API_KEY"] = 'your_openai_api_key'
+os.environ["OPENAI_API_KEY"] =  ''
+
 
 # 2. Excel 파일에서 데이터 로드
 file_path = 'data/final.xlsx'
@@ -46,11 +48,21 @@ vector_index = VectorStoreIndex.from_vector_store(
     vector_store=vector_store, storage_context=storage_context
 )
 
-# 8. 키워드 인덱스 생성 (BM25 기반 키워드 검색용)
-keyword_index = SimpleKeywordTableIndex.from_documents(documents)
-
-# 9. 키워드 인덱스를 디스크에 저장
-keyword_index.storage_context.persist(persist_dir="./keyword_index")
+# 8. 키워드 인덱스를 로드할지 아니면 새로 생성할지 결정
+try:
+    # 기존 키워드 인덱스를 pickle로부터 로드
+    with open('keyword_index.pkl', 'rb') as f:
+        keyword_index = pickle.load(f)
+    print("키워드 인덱스 로드 완료.")
+except FileNotFoundError:
+    # 키워드 인덱스가 없으면 새로 생성
+    print("키워드 인덱스가 없어서 새로 생성합니다.")
+    keyword_index = SimpleKeywordTableIndex.from_documents(documents)
+    
+    # 9. 키워드 인덱스를 pickle로 디스크에 저장
+    with open('keyword_index.pkl', 'wb') as f:
+        pickle.dump(keyword_index, f)
+    print("키워드 인덱스 저장 완료.")
 
 # 10. 문서를 노드로 변환
 parser = SimpleNodeParser()
