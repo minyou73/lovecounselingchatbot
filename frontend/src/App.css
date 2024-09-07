@@ -1,0 +1,115 @@
+/* App.css */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f4f8;  /* 더 부드러운 배경색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.chat-container {
+  width: 400px;
+  background-color: white;
+  border-radius: 20px;  /* 더 둥근 모서리 */
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);  /* 더 강조된 그림자 */
+  padding: 25px;
+  border: 1px solid #e2e8f0;  /* 더 부드러운 테두리 색상 */
+}
+
+h1 {
+  text-align: center;
+  color: #2d3748;  /* 더 진한 제목 색상 */
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  margin-bottom: 25px;
+  font-weight: 600;  /* 더 굵은 폰트 */
+}
+
+.chat-log {
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #f8fafc;  /* 약간 더 밝은 배경 */
+  margin-bottom: 20px;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.chat-message {
+  margin: 12px 0;
+  padding: 12px 18px;
+  border-radius: 18px;
+  max-width: 80%;
+  word-wrap: break-word;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+  line-height: 1.4;  /* 더 나은 가독성 */
+}
+
+.user {
+  background-color: #ebf4ff;  /* 더 밝은 파란색 */
+  color: #2c5282;
+  align-self: flex-end;
+  margin-left: auto;
+  border-radius: 18px 18px 0 18px;
+}
+
+.bot {
+  background-color: #fef6e4;  /* 더 밝은 베이지 */
+  color: #723b13;
+  align-self: flex-start;
+  border-radius: 18px 18px 18px 0;
+}
+
+.error {
+  background-color: #fff5f5;  /* 연한 빨간색 배경 */
+  color: #c53030;
+  align-self: center;
+  border-radius: 18px;
+  font-style: italic;
+}
+
+.chat-input-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-input {
+  width: 75%;
+  padding: 12px 18px;
+  border-radius: 25px;  /* 더 둥근 입력 필드 */
+  border: 1px solid #cbd5e0;
+  background-color: #fff;
+  font-size: 14px;
+  color: #2d3748;
+  transition: border-color 0.3s ease;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: #4299e1;  /* 포커스 시 테두리 색상 변경 */
+}
+
+.chat-submit {
+  width: 22%;
+  padding: 12px;
+  border-radius: 25px;  /* 더 둥근 버튼 */
+  border: none;
+  background-color: #4299e1;  /* 더 밝은 파란색 버튼 */
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.chat-submit:hover {
+  background-color: #3182ce;
+}
+
+.chat-submit:active {
+  background-color: #2c5282;
+}
